@@ -1,44 +1,41 @@
+import React from 'react';
+import { getProfile } from '../services/apiCall';
+import Accounts from '../components/Account';
+import Welcome from '../components/Welcome';
+import { account } from "../_mocks_/account";
+import { useDispatch, useSelector } from 'react-redux';
+import "../styles/css/profile.css";
+import { getInfoProfile } from '../services/redux/profileSlice';
+import { useNavigate } from 'react-router-dom';
+import { getLoggedOut } from '../services/redux/loginSlice';
 
 const Profile = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const token = useSelector((state) => state.login.token);
+
+    React.useEffect(() => {
+        const getProfileInfo = async () => {
+            const data = await getProfile(token);
+            if (data !== "error") {
+                dispatch(getInfoProfile(data));
+            }
+            else {
+                dispatch(getLoggedOut());
+                navigate("/login");
+            }
+        };
+        getProfileInfo();
+    }, [dispatch, navigate, token]);
 
     return (
         <main className="main bg-dark">
-        <div className="header">
-          <h1>Welcome back<br />Tony Jarvis!</h1>
-          <button className="edit-button">Edit Name</button>
-        </div>
-        <h2 className="sr-only">Accounts</h2>
-        <section className="account">
-          <div className="account-content-wrapper">
-            <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-            <p className="account-amount">$2,082.79</p>
-            <p className="account-amount-description">Available Balance</p>
-          </div>
-          <div className="account-content-wrapper cta">
-            <button className="transaction-button">View transactions</button>
-          </div>
-        </section>
-        <section className="account">
-          <div className="account-content-wrapper">
-            <h3 className="account-title">Argent Bank Savings (x6712)</h3>
-            <p className="account-amount">$10,928.42</p>
-            <p className="account-amount-description">Available Balance</p>
-          </div>
-          <div className="account-content-wrapper cta">
-            <button className="transaction-button">View transactions</button>
-          </div>
-        </section>
-        <section className="account">
-          <div className="account-content-wrapper">
-            <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
-            <p className="account-amount">$184.30</p>
-            <p className="account-amount-description">Current Balance</p>
-          </div>
-          <div className="account-content-wrapper cta">
-            <button className="transaction-button">View transactions</button>
-          </div>
-        </section>
-      </main>
+            <Welcome />
+            <h2 className="sr-only">Accounts</h2>
+            {account.map((acct) => (
+                <Accounts key={acct.id} account={acct} />
+            ))}
+        </main>
     );
 }
 

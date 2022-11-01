@@ -12,11 +12,14 @@
   color: #42b983;
 }
 
-.main-nav-item {
+.main-nav-link {
   text-decoration: none;
   margin-right: 0.5rem;
+  display: flex;
+  gap: 5px;
+  align-items: baseline;
 }
-.main-nav-item:hover {
+.main-nav-link:hover {
   text-decoration: underline;
 }
 
@@ -28,4 +31,16 @@
 .main-nav-logo-image {
   max-width: 100%;
   width: 200px;
+}
+
+.main-nav .nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.main-nav .profile-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }/*# sourceMappingURL=header.css.map */
