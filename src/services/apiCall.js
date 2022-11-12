@@ -12,7 +12,10 @@ const login = async (email, password) => {
     });
     const data = await response.json();
     if (data.status === 200) {
-        return data.body;
+        return data;
+    }
+    else {
+        return data;
     }
 };
 

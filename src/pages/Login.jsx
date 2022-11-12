@@ -10,14 +10,18 @@ const Login = () => {
     const dispatch = useDispatch();
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [error, setError] = React.useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let { token } = await login(email, password);
-        console.log(token);
-        if (token) {
-            dispatch(getLogged(token));
+        let data = await login(email, password);
+        if (data.body) {
+            setError(null);
+            dispatch(getLogged(data.body.token));
             navigate('/profile');
+        }
+        else {
+            setError(data.message.replace('Error: ',""));
         }
     };
 
@@ -39,6 +43,7 @@ const Login = () => {
                         <input type="checkbox" id="remember-me"/>
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
+                    <span className="error">{error}</span>
                     <button className="sign-in-button">Sign In</button>
                 </form>
             </section>

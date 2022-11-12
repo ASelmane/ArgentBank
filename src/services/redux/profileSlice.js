@@ -20,7 +20,6 @@ export const profileSlice = createSlice({
             state.updatedAt = action.payload.updatedAt
         },
         updateInfoProfile: (state, action) => {
-            console.log(action.payload)
             state.firstName = action.payload.firstName
             state.lastName = action.payload.lastName
             state.updatedAt = action.payload.updatedAt

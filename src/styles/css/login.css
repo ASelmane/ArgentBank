@@ -18,9 +18,8 @@
   margin-top: 3rem;
   padding: 2rem;
 }
-
-.sign-in-icon {
-  font-size: 5rem;
+.sign-in-content form {
+  position: relative;
 }
 
 .input-remember {
@@ -28,4 +27,15 @@
 }
 .input-remember label {
   margin-left: 0.25rem;
+}
+
+.error {
+  position: absolute;
+  display: flex;
+  bottom: 3.2em;
+  width: 100%;
+  justify-content: center;
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
 }/*# sourceMappingURL=login.css.map */

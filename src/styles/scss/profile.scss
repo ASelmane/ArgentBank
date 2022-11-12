@@ -4,6 +4,9 @@
     margin-bottom: 2rem;
     height: 135px;
 }
+.edit {
+    margin-bottom: 0.2em;
+}
 
 .edit-button {
     border-color: #00bc77;
@@ -27,6 +30,18 @@
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
+    }
+    @media screen and (max-width: 575px) {
+        gap : 0.5rem;
+        input {
+            width: 150px;
+        }
+    }
+    @media screen and (max-width: 420px) {
+        gap : 0.5rem;
+        input {
+            width: 100px;
+        }
     }
 }
 

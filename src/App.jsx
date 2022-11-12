@@ -10,7 +10,6 @@ import { useSelector } from 'react-redux';
 
 const App = () => {
     const isLogged = useSelector(state => state.login.connected);
-    console.log(isLogged);
     return (
         <div className="App">
             <BrowserRouter>

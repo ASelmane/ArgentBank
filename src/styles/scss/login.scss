@@ -17,15 +17,26 @@
     margin: 0 auto;
     margin-top: 3rem;
     padding: 2rem;
+    form {
+        position: relative;
+    }
 }
 
-.sign-in-icon {
-    font-size: 5rem;
-}
 
 .input-remember {
     display: flex;
     label {
         margin-left: 0.25rem;
     }
+}
+
+.error {
+    position: absolute;
+    display: flex;
+    bottom: 3.2em;
+    width: 100%;
+    justify-content: center;
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
 }
