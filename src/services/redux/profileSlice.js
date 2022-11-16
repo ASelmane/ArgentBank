@@ -18,11 +18,13 @@ export const profileSlice = createSlice({
             state.lastName = action.payload.lastName
             state.createdAt = action.payload.createdAt
             state.updatedAt = action.payload.updatedAt
+            localStorage.setItem("firstName", action.payload.firstName)
         },
         updateInfoProfile: (state, action) => {
             state.firstName = action.payload.firstName
             state.lastName = action.payload.lastName
             state.updatedAt = action.payload.updatedAt
+            localStorage.setItem("firstName", action.payload.firstName)
         },
         cleanInfoProfile : (state) => {
             state.id = ""
@@ -31,8 +33,8 @@ export const profileSlice = createSlice({
             state.lastName = ""
             state.createdAt = ""
             state.updatedAt = ""
+            localStorage.removeItem("firstName")
         }
-
     }
 })
 export const {getInfoProfile, updateInfoProfile, cleanInfoProfile } = profileSlice.actions

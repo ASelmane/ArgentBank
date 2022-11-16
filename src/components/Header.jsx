@@ -4,12 +4,15 @@ import logo from "../assets/img/argentBankLogo.png"
 import { useDispatch, useSelector } from 'react-redux';
 import { getLoggedOut } from "../services/redux/loginSlice";
 
-
 const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const isLogged = useSelector(state => state.login.connected);
-    const firstName = useSelector(state => state.profile.firstName);
+    let firstName = useSelector(state => state.profile.firstName);
+
+    if(localStorage.getItem("token") && !firstName) {
+        firstName = localStorage.getItem("firstName");
+    }
 
     const logout = () => {
         dispatch(getLoggedOut());

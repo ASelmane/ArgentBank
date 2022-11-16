@@ -6,10 +6,25 @@ import Profile from './pages/Profile';
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLoggedOut, stayLogged } from './services/redux/loginSlice';
 
 const App = () => {
+    const dispatch = useDispatch();
+    
     const isLogged = useSelector(state => state.login.connected);
+
+    React.useEffect(() => {
+        const date = new Date(localStorage.getItem("date"));
+        if (date) {
+            if(new Date() > date.setMinutes(date.getMinutes() + 15)) {
+                dispatch(getLoggedOut());
+            } else if (localStorage.getItem("token")) {
+                dispatch(stayLogged());
+            }
+        }
+    }, [dispatch]);
+
     return (
         <div className="App">
             <BrowserRouter>

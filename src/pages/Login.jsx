@@ -4,6 +4,7 @@ import "../styles/css/login.css";
 import { useDispatch } from "react-redux";
 import { getLogged } from "../services/redux/loginSlice";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -11,6 +12,12 @@ const Login = () => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [error, setError] = React.useState(null);
+
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            navigate("/profile");
+        }
+    }, [navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
